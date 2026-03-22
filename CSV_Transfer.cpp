@@ -2,7 +2,7 @@
 #include "CSV_Transfer.h"
 #include <fstream>
 #include <sstream>
-
+#include <iostream>
 int stringToInt(const std::string& val) 
 {
     if (val.empty())
@@ -29,7 +29,15 @@ double stringToDouble(const std::string& val)
         return 0.0;
     }
 }
-void loadCSVData(const std::string& filename, std::vector<CSVData>& data, const std::string& category)
+bool stringToBool(const std::strin& val)
+{
+    if (val == "1" || val == "true" || val == "TRUE")
+    {
+        return true;
+    }
+    return false;
+}
+void loadCSVData(const std::string& filename, std::vector<CSVData>& data)
 {
     std::ifstream file(filename);
     if (file.is)open() == false)
@@ -40,35 +48,43 @@ void loadCSVData(const std::string& filename, std::vector<CSVData>& data, const 
 
 std::string line;
 std::getline (file, line);
-while (std::Getline(file, line))
+while (std::getline(file, line))
 {
     std::stringstream ss(line);
     std::string val;
     CSVData dataEntry;
     
     std::getline(ss, val, ',');
-    dataEntry.malID = stringToInt(val);
+    dataEntry.ShowID = stringToInt(val);
 
-    std::getline(ss, dataEntry.title, ',');
-    std::getline(ss, dataEntry.type, ',');
+    std::getline(ss, dataEntry.name, ',');
     std::getline(ss, val, ',');
-    dataEntry.rating = stringToDouble(val);
-
-    std::getline(ss, val, ',');
-    dataEntry.ratingBy = stringToDouble(val);
-
-    std::getline(ss, dataEntry.status, ','); 
+    dataEntry.episodes = stringToInt(val);
+    
+    std::getline(ss, dataEntry.overview, ',');
+    std::getline(ss,val,',');
+    dataEntry.isAdult = stringToBool(val);
     
     std::getline(ss, val, ',');
-    dataEntry.episode = stringToInt(val);
+    dataEntry.inProduction = stringToBool(val);
+
+    std::getline(ss, dataEntry.originalName, ','); 
     
-    std::getline(ss, dataEntry.startAirDate, ',');
-    std::getline(ss, dataEntry.endAirDate, ',');
-    std::getline(ss, dataEntry.source, ',');
-    dataEntry.category = category;
+    std::getline(ss, val, ',');
+    dataEntry.popularity = stringToDouble(val);
     
-    list.push_back(dataEntry);
+    std::getline(ss, dataEntry.tagline, ',');
+    std::getline(ss, val, ',');
+    dataEntry.showRunTime = stringToInt(val);
+    
+    std::getline(ss, val, ',');
+    dataEntry.typeID = stringToInt(val);
+    
+    std::getline(ss, val, ',');
+    dataEntry.statusID= stringToInt(val);
+    
+    data.push_back(dataEntry);
 }
 file.close();
-std::cout << "Loaded..."<<list.size()<< " entries from..."<<filename<<std::endl;
+std::cout << "Loaded..."<<data.size()<< " entries from..."<<filename<<std::endl;
 }
