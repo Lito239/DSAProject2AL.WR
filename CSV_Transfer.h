@@ -8,7 +8,7 @@ struct CSVData
     std::string name;
     int seasons;
     int episodes;
-    std::sttring overview;
+    std::string overview;
     bool isAdult;
     bool inProduction;
     std::string originalName;
