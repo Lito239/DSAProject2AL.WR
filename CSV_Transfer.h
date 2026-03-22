@@ -4,17 +4,19 @@
 
 struct CSVData 
 {
-    int malID;
-    std::string title;
-    std::string type;
-    double rating;
-    int ratingBy;
-    std::string status;
-    int episode;
-    std::string startAirDate;
-    std::string endAirDate;
-    std::string source;
-    std::string category;
+    int ShowID;
+    std::string name;
+    int seasons;
+    int episodes;
+    std::sttring overview;
+    bool isAdult;
+    bool inProduction;
+    std::string originalName;
+    double popularity;
+    std::string tagline;
+    int showRunTime;
+    int typeID;
+    int statusID;
 };
 
-void loadCSVData(const std::string& filename, std::vector<CSVData>& data, const std::string& category);
+void loadCSVData(const std::string& filename, std::vector<CSVData>& data);
