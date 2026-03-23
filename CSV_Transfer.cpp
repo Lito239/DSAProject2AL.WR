@@ -29,7 +29,7 @@ double stringToDouble(const std::string& val)
         return 0.0;
     }
 }
-bool stringToBool(const std::strin& val)
+bool stringToBool(const std::string& val)
 {
     if (val == "1" || val == "true" || val == "TRUE")
     {
@@ -40,7 +40,7 @@ bool stringToBool(const std::strin& val)
 void loadCSVData(const std::string& filename, std::vector<CSVData>& data)
 {
     std::ifstream file(filename);
-    if (file.is)open() == false)
+    if (file.is_open() == false)
     {
         std::cout<<"Error: Could not open file " <<filename <<std::endl;
         return;
@@ -59,6 +59,9 @@ while (std::getline(file, line))
 
     std::getline(ss, dataEntry.name, ',');
     std::getline(ss, val, ',');
+    dataEntry.seasons = stringToInt(val);
+
+    std::getline(ss,val, ',');
     dataEntry.episodes = stringToInt(val);
     
     std::getline(ss, dataEntry.overview, ',');

@@ -5,7 +5,7 @@ std::string lowercaseHelper(std::string text)
 {
   for (int i = 0; i < text.length(); i++)
     {
-      text[i] = std::tolower(text[i]);
+      text[i] = std::tolower((unsigned char)text[i]);
     }
     return text;
 }
@@ -14,19 +14,19 @@ std::vector<CSVData> searchName(const std::vector<CSVData>& data, const std::str
   std::vector<CSVData> results;
   std::string lowerKey = lowercaseHelper(key);
   for (int i = 0; i <data.size(); i++)
-    {
+  {
       std::string lowercaseName = lowercaseHelper(data[i].name);
       if (lowercaseName.find(lowerKey) != std::string::npos)
       {
-        results.push_back(data[i])
+        results.push_back(data[i]);
       }
-    }
+  }
   return results;
 }
 std::vector<CSVData> filterByPopularity(const std::vector<CSVData>& data, double leastPopular)
 {
   std::vector<CSVData> results;
-  for (int i = 0; i<data.size();i++;
+  for (int i = 0; i<data.size();i++)
     {
       if (data[i].popularity >= leastPopular)
       {
