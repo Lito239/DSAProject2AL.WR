@@ -18,12 +18,16 @@ void printTopResults(const std::vector<CSVData>& data, int limit = 10)
     {
         amountToPrint = data.size();
     }
-    std::cout<<"\nShowing top "<<amountToPrint<<" results: "<<std::endl;
-    for(int i=0; i<amountToPrint; i++)
+    std::cout<<"\nShowing top "<< amountToPrint <<" results: "<<std::endl;
+    for(int i=0; i < amountToPrint; i++)
     {
-        std::cout << i+1<< ". "<<data[i].name << " | Popularity: " << data[i].popularity
-                                <<" | Seasons: " << data[i].seasons
-                                <<std::endl;
+        if (data[i].name.empty())
+        {
+            continue;
+        }
+        std::cout << i+1 << ". "<< data[i].name << " | Popularity: " << data[i].popularity
+                                << " | Seasons: " << data[i].seasons
+                                << std::endl;
     }
 }
 void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& mergeSortData, const std::string& sortBy) {
@@ -140,7 +144,6 @@ int main()
                 std::cout <<"\nSorting by seasons..."<<std::endl;
                 sortHelper(quickSortData, mergeSortData, "seasons");
             }
-            std::cout<<"\nTop 10 Sorted Results:"<<std::endl;
             printTopResults(quickSortData);
         }
         else if (menu == 0)
