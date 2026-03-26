@@ -1,10 +1,31 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <string>
 #include "CSV_Transfer.h"
 #include "search.h"
 #include "sort.h"
-#include <chrono>
 
+void printTopResults(const std::vector<CSVData>& data, int limit = 10)
+{
+    if (data.empty())
+    {
+        std::cout<<"No results found! \n";
+        return;
+    }
+    int amountToPrint = limit;
+    if (data.size() < limit)
+    {
+        amountToPrint = data.size();
+    }
+    std::cout<<"\nShowing top "<<amountToPrint<<" results: "<<std::endl;
+    for(int i=0; i<amountToPrint; i++)
+    {
+        std::cout << i+1<< ". "<<data[i].name << " | Popularity: " << data[i].popularity
+                                <<" | Seasons: " << data[i].seasons
+                                <<std::endl;
+    }
+}
 void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& mergeSortData, const std::string& sortBy) {
     if (quickSortData.empty() || mergeSortData.empty()) {
         std::cout << "No data to sort.\n" << std::endl;
@@ -42,71 +63,98 @@ int main()
         return 1;
     }
     
-    std::string key;
-    std::cout<<"\nEnter a show name: ";
-    std::getline(std::cin, key);
-    std::vector<CSVData> results = searchName(shows, key);
-    std::cout <<"\nFound " <<results.size() <<" results:\n";
-
-    std::vector<CSVData> quickSortData = shows;
-    std::vector<CSVData> mergeSortData = shows;
-
-    int comparison_value = -1;
-    while (comparison_value < 1 || comparison_value > 3) 
+    int menu = -1;
+    while (menu != 0)
     {
-        std::cout << "\nChoose sorting criteria:\n";
-        std::cout << "1: Name\n";
-        std::cout << "2: Popularity\n";
-        std::cout << "3: Seasons\n";
-        std::cin >> comparison_value;
+        std::cout << "\n ************ SEARCH-A-SHOW ************"<<std::endl;
+        std::cout<< "1. Search by Name"<<std::endl;
+        std::cout<< "2. Filter by Popularity"<<std::endl;
+        std::cout<< "3. Filter By Seasons"<<std::endl;
+        std::cout<< "4. Sort and Benchmark All Shows"<<std::endl;
+        std::cout<< "0. Exit"<<std::endl;
+        std::cin >> menu;
 
-        if (comparison_value < 1 || comparison_value > 3)
+        if (menu == 1)
         {
-            std::cout << "Invalid choice. Please enter a number between 1 and 3." << std::endl;
+            std::cin.ignore();
+            std::string key;
+            std::cout <<"\nEnter a show name: ";
+            std::getline(std::cin, key);
+            std::vector<CSVData>results = searchName(shows, key);
+            std::cout <<"\nFound "<<results.size() << " results."<<std::endl;
+            printTopResults(results);
+        }
+        else if (menu ==2)
+        {
+            double minimumPop;
+            std::cout<<"\nEnter minimum popularity: ";
+            std::cin >> minimumPop;
+            std::vector<CSVData> popularityResults = filterByPopularity(shows, minimumPop);
+            std::cout << "\nShows with popularity >= "<<minimumPop<<": "
+            <<popularityResults.size() <<std::endl;
+
+            printTopResults(popularityResults);
+        }
+        else if (menu ==3)
+        {
+            int minimumSeasons;
+            std::cout<<"\nEnter minimum number of seasons: ";
+            std::cin >> minimumSeasons;
+            std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons);
+            std::cout<<"\nShows with seasons >= " <<minimumSeasons<<": "
+            <<seasonResults.size() <<std::endl;
+            
+            printTopResults(seasonResults);
+        }
+        else if (menu ==4)
+        {
+            std::vector<CSVData> quickSortData = shows;
+            std::vector<CSVData> mergeSortData = shows;
+            
+            int comparisonValue = -1;
+
+            while(comparisonValue < 1 || comparisonValue > 3)
+            {
+                std::cout<<"\nChoose sorting criteria: "<<std::endl;
+                std::cout<<"1. Name"<<std::endl;
+                std::cout<<"2. Popularity"<<std::endl;
+                std::cout<<"3. Seasons"<<std::endl;
+                std::cout<<"Enter choice: ";
+                std::cin >> comparisonValue;
+
+                if (comparisonValue < 1 || comparisonValue >3)
+                {
+                    std::cout<<"Invalid choice. Please enter 1, 2, or 3."<<std::endl;
+                }
+            }
+            if(comparisonValue ==1)
+            {
+                std::cout <<"\nSorting by name..."<<std::endl;
+                sortHelper(quickSortData, mergeSortData, "name");
+            }
+            else if (comparisonValue == 2)
+            {
+                std::cout <<"\nSorting by popularity..."<<std::endl;
+                sortHelper(quickSortData, mergeSortData, "popularity");
+            }
+            else if (comparisonValue == 3)
+            {
+                std::cout <<"\nSorting by seasons..."<<std::endl;
+                sortHelper(quickSortData, mergeSortData, "seasons");
+            }
+            std::cout<<"\nTop 10 Sorted Results:"<<std::endl;
+            printTopResults(quickSortData);
+        }
+        else if (menu == 0)
+        {
+            std::cout <<"\nExiting program."<<std::endl;
+        }
+        else
+        {
+            std::cout<<"\nInvalid option. Please try again."<<std::endl;
         }
     }
-
-    if (comparison_value == 1)
-    {
-        std::cout << "\nSorting by name...\n";
-        sortHelper(quickSortData, mergeSortData, "name");
-    }
-    else if (comparison_value == 2) 
-    {
-        std::cout << "\nSorting by popularity...\n";
-        sortHelper(quickSortData, mergeSortData, "popularity");
-    }
-    else if (comparison_value == 3) 
-    {
-        std::cout << "\nSorting by seasons...\n";
-        sortHelper(quickSortData, mergeSortData, "seasons");
-    }
     
-    std::cout << "\nTop 10 Results:\n";
-    for (int i = 0; i < results.size() && i < 10; i++)
-    {
-        std::cout << i + 1 << ". " << results[i].name <<
-        " | Popularity: " << results[i].popularity<<
-        " | Seasons: " << results[i].seasons <<
-        std::endl;
-    }
-
-    /*
-    //Second Test - By Popularity
-    double minimumPop;
-    std::cout <<"\nEnter minimum Popularity: ";
-    std::cin >> minimumPop;
-    std::vector<CSVData> popularityResults= filterByPopularity(shows, minimumPop);
-    std::cout << "\nShows with popularity >="<< minimumPop <<": "
-    << popularityResults.size() <<std::endl;
-
-    for (int i = 0; i<popularityResults.size() && i<10; i++)
-    {
-        std::cout <<popularityResults[i].name <<
-        " | Popularity: " << popularityResults[i].popularity <<
-        std::endl;
-    }
-    */
 
     return 0;
 }

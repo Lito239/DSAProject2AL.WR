@@ -47,7 +47,18 @@ std::vector<CSVData> filterBySeasons(const std::vector<CSVData>& data, int least
     }
   return results;
 }
-
+std::vector<CSVData> filterByProduction(const std::vector<CSVData>& data, bool currentlyInProduction)
+{
+  std::vector<CSVData> results;
+  for( int i = 0; i<data.size(); i++)
+  {
+    if(data[i].inProduction == currentlyInProduction)
+    {
+      results.push_back(data[i]);
+    }
+  }
+  return results;
+}
 
 
 
