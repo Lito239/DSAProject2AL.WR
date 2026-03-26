@@ -37,14 +37,12 @@ void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& merg
     auto end = std::chrono::high_resolution_clock::now();
     
     std::chrono::duration<double> quickSortDuration = end - start;
-    std::cout << "Quick Sort Duration: " << quickSortDuration.count() << " seconds" << std::endl;
 
     start = std::chrono::high_resolution_clock::now();
     mergeSort(mergeSortData, 0, mergeSortData.size() - 1, sortBy);
     end = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> mergeSortDuration = end - start;
-    std::cout << "Merge Sort Duration: " << mergeSortDuration.count() << " seconds" << std::endl;
     
     std::cout << "\nSorting Performance Comparison:\n";
     std::cout << "Quick Sort Time: " << quickSortDuration.count() << " seconds\n";

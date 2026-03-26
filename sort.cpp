@@ -12,12 +12,12 @@ int partition(std::vector<CSVData>& data, int low, int high, const std::string& 
                 std::swap(data[i], data[j]);
             }
         } else if (sortBy == "popularity") {
-            if (data[j].popularity < pivot.popularity) {
+            if (data[j].popularity > pivot.popularity) {
                 i++;
                 std::swap(data[i], data[j]);
             }
         } else if (sortBy == "seasons") {
-            if (data[j].seasons < pivot.seasons) {
+            if (data[j].seasons > pivot.seasons) {
                 i++;
                 std::swap(data[i], data[j]);
             }
@@ -51,7 +51,7 @@ void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::
                 j++;
             }
         } else if (sortBy == "popularity") {
-            if (L[i].popularity <= R[j].popularity) {
+            if (L[i].popularity >= R[j].popularity) {
                 data[k] = L[i];
                 i++;
             } else {
@@ -59,7 +59,7 @@ void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::
                 j++;
             }
         } else if (sortBy == "seasons") {
-            if (L[i].seasons <= R[j].seasons) {
+            if (L[i].seasons >= R[j].seasons) {
                 data[k] = L[i];
                 i++;
             } else {
