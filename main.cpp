@@ -23,7 +23,7 @@ void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit =
     }
 
     if (ordered) {
-        std::cout << "\nShowing top " << amountToPrint << " results:" << std::endl;
+        std::cout << "\nShowing top " << amountToPrint << " ordered results:" << std::endl;
     }
     else {
         std::cout << "\nShowing the first " << amountToPrint << " matching unordered results:" << std::endl;
