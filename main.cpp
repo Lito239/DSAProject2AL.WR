@@ -71,6 +71,7 @@ int main()
     std::vector<CSVData> shows;
     loadCSVData("shows.csv", shows);
     std::cout <<"\n Total Shows Loaded: " <<shows.size()<<std::endl;
+    bool ordered = false;
 
     if (shows.empty())
     {
@@ -98,7 +99,7 @@ int main()
             std::getline(std::cin, key);
             std::vector<CSVData>results = searchName(shows, key);
             std::cout <<"\nFound "<<results.size() << " results."<<std::endl;
-            printTopResults(results);
+            printTopResults(results, ordered);
         }
         else if (menu ==2)
         {
@@ -108,7 +109,7 @@ int main()
             std::vector<CSVData> popularityResults = filterByPopularity(shows, minimumPop);
             std::cout << "\nShows with popularity >= "<<minimumPop<<": "
             <<popularityResults.size() <<std::endl;
-            printTopResults(popularityResults);
+            printTopResults(popularityResults, ordered);
         }
         else if (menu ==3)
         {
@@ -118,10 +119,11 @@ int main()
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons);
             std::cout<<"\nShows with seasons >= " <<minimumSeasons<<": "
             <<seasonResults.size() <<std::endl;
-            printTopResults(seasonResults);
+            printTopResults(seasonResults, ordered);
         }
         else if (menu ==4)
         {
+            ordered = true;
             std::vector<CSVData> quickSortData = shows;
             std::vector<CSVData> mergeSortData = shows;
             
@@ -156,7 +158,7 @@ int main()
                 std::cout <<"\nSorting by seasons..."<<std::endl;
                 sortHelper(quickSortData, mergeSortData, "seasons");
             }
-            printTopResults(quickSortData);
+            printTopResults(quickSortData, ordered);
         }
         else if (menu == 0)
         {
@@ -166,6 +168,7 @@ int main()
         {
             std::cout<<"\nInvalid option. Please try again."<<std::endl;
         }
+        ordered = false;
     }
     
 
