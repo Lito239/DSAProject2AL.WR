@@ -143,10 +143,54 @@ int main()
                     std::cout<<"Invalid choice. Please enter 1, 2, or 3."<<std::endl;
                 }
             }
-            if(comparisonValue ==1)
+            if(comparisonValue == 1)
             {
                 std::cout <<"\nSorting by name..."<<std::endl;
-                sortHelper(quickSortData, mergeSortData, "name");
+                sortHelper(quickSortDataName, mergeSortData, "name");
+                printTopResults(quickSortDataName, ordered);
+                
+                bool continueShowing = true;
+                int positionIndex = 0;
+                int moreResults = 10;
+
+                while (continueShowing == true) {
+                    int continueSelection = -1;
+                    std::cout << "KEEP SHOWING?" << std::endl;
+                    std::cout << "1. Yes" << std::endl;
+                    std::cout << "2. No" << std::endl;
+                    std::cin >> continueSelection;
+
+                    if (continueSelection == 1) {
+                        int moreResults = 10;
+                        int remaining = quickSortDataName.size() - positionIndex;
+
+                        if (moreResults > remaining) 
+                        {
+                            moreResults = remaining;
+                        }
+
+                        printTopResults(
+                            std::vector<CSVData>(
+                                quickSortDataName.begin() + positionIndex,
+                                quickSortDataName.begin() + positionIndex + moreResults
+                            ),
+                            ordered,
+                            moreResults
+                        );
+
+                        positionIndex += moreResults;
+
+                        if (positionIndex >= quickSortDataName.size()) 
+                        {
+                            std::cout << "\nReached the end of results." << std::endl;
+                            continueShowing = false;
+                        }
+                    } 
+                    else 
+                    {
+                        continueShowing = false;
+                    }
+                }
             }
             else if (comparisonValue == 2)
             {
