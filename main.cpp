@@ -6,7 +6,7 @@
 #include "search.h"
 #include "sort.h"
 
-void printTopResults(const std::vector<CSVData>& data, int limit = 10, bool ordered)
+void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit = 10)
 {   
     if (data.empty())
     {
