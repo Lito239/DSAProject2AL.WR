@@ -21,7 +21,6 @@ void printTopResults(const std::vector<CSVData>& data, int limit = 10)
     {
         amountToPrint = data.size();
     }
-    std::cout<<"\nShowing top "<< amountToPrint <<" results: "<<std::endl;
     while (printed < amountToPrint && i < data.size())
     {
         if (!data[i].name.empty())
@@ -91,6 +90,8 @@ int main()
             std::getline(std::cin, key);
             std::vector<CSVData>results = searchName(shows, key);
             std::cout <<"\nFound "<<results.size() << " results."<<std::endl;
+
+            std::cout<<"\nShowing the first "<< amountToPrint <<" unordered results: "<<std::endl;
             printTopResults(results);
         }
         else if (menu ==2)
@@ -102,6 +103,7 @@ int main()
             std::cout << "\nShows with popularity >= "<<minimumPop<<": "
             <<popularityResults.size() <<std::endl;
 
+            std::cout<<"\nShowing the first "<< amountToPrint <<" unordered results: "<<std::endl;
             printTopResults(popularityResults);
         }
         else if (menu ==3)
@@ -112,7 +114,8 @@ int main()
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons);
             std::cout<<"\nShows with seasons >= " <<minimumSeasons<<": "
             <<seasonResults.size() <<std::endl;
-            
+
+            std::cout<<"\nShowing the first "<< amountToPrint <<" unordered results: "<<std::endl;
             printTopResults(seasonResults);
         }
         else if (menu ==4)
@@ -151,6 +154,8 @@ int main()
                 std::cout <<"\nSorting by seasons..."<<std::endl;
                 sortHelper(quickSortData, mergeSortData, "seasons");
             }
+
+            std::cout<<"\nShowing top "<< amountToPrint <<" results: "<<std::endl;
             printTopResults(quickSortData);
         }
         else if (menu == 0)
