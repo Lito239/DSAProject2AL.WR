@@ -26,7 +26,7 @@ void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit =
         std::cout << "\nShowing top " << amountToPrint << " results:" << std::endl;
     }
     else {
-        std::cout << "\nShowing the first " << amountToPrint << " unordered results:" << std::endl;
+        std::cout << "\nShowing the first " << amountToPrint << " matching unordered results:" << std::endl;
     }
 
     while (printed < amountToPrint && i < data.size())
@@ -98,7 +98,7 @@ int main()
             std::cout <<"\nEnter a show name: ";
             std::getline(std::cin, key);
             std::vector<CSVData>results = searchName(shows, key);
-            std::cout <<"\nFound "<<results.size() << " results."<<std::endl;
+            std::cout <<"\nFound "<<results.size() << " matching results."<<std::endl;
             printTopResults(results, ordered);
         }
         else if (menu ==2)
@@ -107,7 +107,7 @@ int main()
             std::cout<<"\nEnter minimum popularity: ";
             std::cin >> minimumPop;
             std::vector<CSVData> popularityResults = filterByPopularity(shows, minimumPop);
-            std::cout << "\nShows with popularity >= "<<minimumPop<<": "
+            std::cout << "\nShows with more than "<<minimumPop<<" popularity rating: "
             <<popularityResults.size() <<std::endl;
             printTopResults(popularityResults, ordered);
         }
@@ -117,7 +117,7 @@ int main()
             std::cout<<"\nEnter minimum number of seasons: ";
             std::cin >> minimumSeasons;
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons);
-            std::cout<<"\nShows with seasons >= " <<minimumSeasons<<": "
+            std::cout<<"\nShows with more than " <<minimumSeasons<<" seasons: "
             <<seasonResults.size() <<std::endl;
             printTopResults(seasonResults, ordered);
         }
