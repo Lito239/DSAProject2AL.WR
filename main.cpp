@@ -197,14 +197,17 @@ int main()
             else if (comparisonValue == 2)
             {
                 std::cout <<"\nSorting by popularity..."<<std::endl;
-                sortHelper(quickSortData, mergeSortData, "popularity");
+                sortHelper(quickSortDataPopularity, mergeSortData, "popularity");
+                printTopResults(quickSortDataPopularity, ordered);
+
             }
             else if (comparisonValue == 3)
             {
                 std::cout <<"\nSorting by seasons..."<<std::endl;
-                sortHelper(quickSortData, mergeSortData, "seasons");
+                sortHelper(quickSortDataSeasons, mergeSortData, "seasons");
+                printTopResults(quickSortDataSeasons, ordered);
+
             }
-            printTopResults(quickSortData, ordered);
         }
         else if (menu == 0)
         {
