@@ -124,7 +124,9 @@ int main()
         else if (menu ==4)
         {
             ordered = true;
-            std::vector<CSVData> quickSortData = shows;
+            std::vector<CSVData> quickSortDataName = shows;
+            std::vector<CSVData> quickSortDataPopularity = shows;
+            std::vector<CSVData> quickSortDataSeasons = shows;
             std::vector<CSVData> mergeSortData = shows;
             
             int comparisonValue = -1;
