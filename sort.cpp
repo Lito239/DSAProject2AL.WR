@@ -18,6 +18,20 @@ bool sortCriteria(const CSVData& a, const CSVData& b, const std::string& sortBy)
 }
 
 int partition(std::vector<CSVData>& data, int low, int high, const std::string& sortBy) {
+
+    int mid = low + (high - low) / 2;
+
+    if (sortCriteria(data[mid], data[low], sortBy))
+        std::swap(data[mid], data[low]);
+
+    if (sortCriteria(data[high], data[low], sortBy))
+        std::swap(data[high], data[low]);
+
+    if (sortCriteria(data[high], data[mid], sortBy))
+        std::swap(data[high], data[mid]);
+
+    std::swap(data[mid], data[high]);
+
     const CSVData& pivot = data[high];
     int i = low - 1;
 
