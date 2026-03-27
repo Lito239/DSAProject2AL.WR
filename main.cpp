@@ -22,18 +22,20 @@ void printTopResults(const std::vector<CSVData>& data, int limit = 10)
         amountToPrint = data.size();
     }
     std::cout<<"\nShowing top "<< amountToPrint <<" results: "<<std::endl;
-    while (printed < amountToPrint &&  i < data.size())
+    while (printed < amountToPrint && i < data.size())
     {
-        if (data[i].name.empty())
+        if (!data[i].name.empty())
         {
-            continue;
+            std::cout << printed + 1 << ". " << data[i].name
+                    << " | Popularity: " << data[i].popularity
+                    << " | Seasons: " << data[i].seasons
+                    << std::endl;
+            printed++;
         }
-        std::cout << i+1 << ". "<< data[i].name << " | Popularity: " << data[i].popularity
-                                << " | Seasons: " << data[i].seasons
-                                << std::endl;
-        printed++;
+        i++;
     }
 }
+
 void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& mergeSortData, const std::string& sortBy) {
     if (quickSortData.empty() || mergeSortData.empty()) {
         std::cout << "No data to sort.\n" << std::endl;
@@ -78,6 +80,7 @@ int main()
         std::cout<< "3. Filter By Seasons"<<std::endl;
         std::cout<< "4. Sort and Benchmark All Shows"<<std::endl;
         std::cout<< "0. Exit"<<std::endl;
+        std::cout<< "Enter Choice: "
         std::cin >> menu;
 
         if (menu == 1)
@@ -121,10 +124,10 @@ int main()
 
             while(comparisonValue < 1 || comparisonValue > 3)
             {
-                std::cout<<"\nChoose sorting criteria: "<<std::endl;
-                std::cout<<"1. Name"<<std::endl;
-                std::cout<<"2. Popularity"<<std::endl;
-                std::cout<<"3. Seasons"<<std::endl;
+                std::cout<<"\nCHOOSE SORTING CRITERIA: "<<std::endl;
+                std::cout<<"1. Sort by Name"<<std::endl;
+                std::cout<<"2. Sort by Popularity"<<std::endl;
+                std::cout<<"3. Sort by Seasons"<<std::endl;
                 std::cout<<"Enter choice: ";
                 std::cin >> comparisonValue;
 
