@@ -1,28 +1,35 @@
 #include "sort.h"
 #include <algorithm>
 
+bool sortCriteria(const CSVData& a, const CSVData& b, const std::string& sortBy) {
+    if (sortBy == "name") {
+        return a.name < b.name;
+    }
+
+    if (sortBy == "popularity") {
+        return a.popularity > b.popularity;
+    }
+
+    if (sortBy == "seasons") {
+        return a.seasons > b.seasons;
+    }
+
+    return false;
+}
+
 int partition(std::vector<CSVData>& data, int low, int high, const std::string& sortBy) {
-    CSVData pivot = data[high];
+    const CSVData& pivot = data[high];
     int i = low - 1;
 
     for (int j = low; j < high; j++) {
-        if (sortBy == "name") {
-            if (data[j].name < pivot.name) {
-                i++;
-                std::swap(data[i], data[j]);
-            }
-        } else if (sortBy == "popularity") {
-            if (data[j].popularity > pivot.popularity) {
-                i++;
-                std::swap(data[i], data[j]);
-            }
-        } else if (sortBy == "seasons") {
-            if (data[j].seasons > pivot.seasons) {
-                i++;
-                std::swap(data[i], data[j]);
-            }
+
+        if (sortCriteria(data[j], pivot, sortBy)) {
+            i++;
+            std::swap(data[i], data[j]);
         }
+
     }
+
     std::swap(data[i + 1], data[high]);
     return i + 1;
 }

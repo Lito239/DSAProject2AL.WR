@@ -80,7 +80,7 @@ int main()
         std::cout<< "3. Filter By Seasons"<<std::endl;
         std::cout<< "4. Sort and Benchmark All Shows"<<std::endl;
         std::cout<< "0. Exit"<<std::endl;
-        std::cout<< "Enter Choice: "
+        std::cout<< "Enter Choice: ";
         std::cin >> menu;
 
         if (menu == 1)
