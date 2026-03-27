@@ -160,7 +160,7 @@ int main()
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
-                    std::cout << "\nEnter Choice: "
+                    std::cout << "\nEnter Choice: ";
                     std::cin >> continueSelection;
 
                     if (continueSelection == 1) {
@@ -196,7 +196,7 @@ int main()
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
-                    std::cout << "\nEnter Choice: "
+                    std::cout << "\nEnter Choice: ";
                     std::cin >> continueSelection;
 
                     if (continueSelection == 1) {
@@ -232,7 +232,7 @@ int main()
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
-                    std::cout << "\nEnter Choice: "
+                    std::cout << "\nEnter Choice: ";
                     std::cin >> continueSelection;
 
                     if (continueSelection == 1) {
