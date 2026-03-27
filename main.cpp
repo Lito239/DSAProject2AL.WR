@@ -88,7 +88,7 @@ int main()
         std::cout<< "3. Filter By Seasons"<<std::endl;
         std::cout<< "4. Sort and Benchmark All Shows"<<std::endl;
         std::cout<< "0. Exit"<<std::endl;
-        std::cout<< "Enter Choice: ";
+        std::cout<< "\nEnter Choice: ";
         std::cin >> menu;
 
         if (menu == 1)
@@ -137,7 +137,7 @@ int main()
                 std::cout<<"1. Sort by Name"<<std::endl;
                 std::cout<<"2. Sort by Popularity"<<std::endl;
                 std::cout<<"3. Sort by Seasons"<<std::endl;
-                std::cout<<"Enter choice: ";
+                std::cout<<"\nEnter choice: ";
                 std::cin >> comparisonValue;
 
                 if (comparisonValue < 1 || comparisonValue >3)
@@ -157,36 +157,14 @@ int main()
 
                 while (continueShowing == true) {
                     int continueSelection = -1;
-                    std::cout << "KEEP SHOWING?" << std::endl;
+                    std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
+                    std::cout << "\nEnter Choice: "
                     std::cin >> continueSelection;
 
                     if (continueSelection == 1) {
-                        int moreResults = 10;
-                        int remaining = quickSortDataName.size() - positionIndex;
-
-                        if (moreResults > remaining) 
-                        {
-                            moreResults = remaining;
-                        }
-
-                        printTopResults(
-                            std::vector<CSVData>(
-                                quickSortDataName.begin() + positionIndex,
-                                quickSortDataName.begin() + positionIndex + moreResults
-                            ),
-                            ordered,
-                            moreResults
-                        );
-
-                        positionIndex += moreResults;
-
-                        if (positionIndex >= quickSortDataName.size()) 
-                        {
-                            std::cout << "\nReached the end of results." << std::endl;
-                            continueShowing = false;
-                        }
+                        continue;
                     } 
                     else 
                     {
