@@ -7,28 +7,30 @@
 #include "sort.h"
 
 void printTopResults(const std::vector<CSVData>& data, int limit = 10)
-{
+{   
     if (data.empty())
     {
         std::cout<<"No results found! \n";
         return;
     }
     int amountToPrint = limit;
+    int printed = 0;
+
     if (data.size() < limit)
     {
         amountToPrint = data.size();
     }
     std::cout<<"\nShowing top "<< amountToPrint <<" results: "<<std::endl;
-    for(int i=0; i < amountToPrint; i++)
+    while (printed < amountToPrint &&  i < data.size())
     {
         if (data[i].name.empty())
         {
-            i = i - 1;
             continue;
         }
         std::cout << i+1 << ". "<< data[i].name << " | Popularity: " << data[i].popularity
                                 << " | Seasons: " << data[i].seasons
                                 << std::endl;
+        printed++;
     }
 }
 void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& mergeSortData, const std::string& sortBy) {
