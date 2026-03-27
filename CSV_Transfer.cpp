@@ -1,4 +1,3 @@
-// Comment test
 #include "CSV_Transfer.h"
 #include <fstream>
 #include <sstream>
