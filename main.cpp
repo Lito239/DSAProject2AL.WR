@@ -15,6 +15,7 @@ void printTopResults(const std::vector<CSVData>& data, int limit = 10)
     }
     int amountToPrint = limit;
     int printed = 0;
+    int i = 0;
 
     if (data.size() < limit)
     {
