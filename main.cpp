@@ -152,7 +152,7 @@ int main()
                 printTopResults(quickSortDataName, ordered);
                 
                 bool continueShowing = true;
-                int positionIndex = 0;
+                int positionIndex = 10;
                 int moreResults = 0;
 
                 while (continueShowing == true) {
@@ -172,7 +172,7 @@ int main()
                             std::cout << "\nNo more results to show." << std::endl;
                             continueShowing = false;
                         } else {
-                            printTopResults(quickSortDataName, ordered, positionIndex + moreResults);
+                            printTopResults(quickSortDataName, ordered, positionIndex);
                         }
                     } 
                     else 
@@ -188,7 +188,7 @@ int main()
                 printTopResults(quickSortDataPopularity, ordered);
 
                 bool continueShowing = true;
-                int positionIndex = 0;
+                int positionIndex = 10;
                 int moreResults = 0;
 
                 while (continueShowing == true) {
@@ -208,7 +208,7 @@ int main()
                             std::cout << "\nNo more results to show." << std::endl;
                             continueShowing = false;
                         } else {
-                            printTopResults(quickSortDataPopularity, ordered, positionIndex + moreResults);
+                            printTopResults(quickSortDataPopularity, ordered, positionIndex);
                         }
                     } 
                     else 
@@ -224,7 +224,7 @@ int main()
                 printTopResults(quickSortDataSeasons, ordered);
 
                 bool continueShowing = true;
-                int positionIndex = 0;
+                int positionIndex = 10;
                 int moreResults = 0;
 
                 while (continueShowing == true) {
@@ -244,7 +244,7 @@ int main()
                             std::cout << "\nNo more results to show." << std::endl;
                             continueShowing = false;
                         } else {
-                            printTopResults(quickSortDataSeasons, ordered, positionIndex + moreResults);
+                            printTopResults(quickSortDataSeasons, ordered, positionIndex);
                         }
                     } 
                     else 
