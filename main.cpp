@@ -23,6 +23,7 @@ void printTopResults(const std::vector<CSVData>& data, int limit = 10)
     {
         if (data[i].name.empty())
         {
+            i = i - 1;
             continue;
         }
         std::cout << i+1 << ". "<< data[i].name << " | Popularity: " << data[i].popularity
