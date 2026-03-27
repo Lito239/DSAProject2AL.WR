@@ -105,11 +105,43 @@ void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::
 }
 
 void quickSort(std::vector<CSVData>& data, int low, int high, const std::string& sortBy) {
-    if (low < high) {
-        int pi = partition(data, low, high, sortBy);
-        quickSort(data, low, pi - 1, sortBy);
-        quickSort(data, pi + 1, high, sortBy);
+void quickSort(std::vector<CSVData>& data,
+               int low,
+               int high,
+               const std::string& sortBy)
+{
+    if (low >= high)
+        return;
+
+    const CSVData& pivot = data[high];
+
+    int lt = low;
+    int gt = high;
+    int i = low;
+
+    while (i <= gt) {
+
+        if (sortCriteria(data[i], pivot, sortBy)) {
+
+            std::swap(data[lt], data[i]);
+            lt++;
+            i++;
+        }
+
+        else if (sortCriteria(pivot, data[i], sortBy)) {
+
+            std::swap(data[i], data[gt]);
+            gt--;
+        }
+
+        else {
+
+            i++;
+        }
     }
+
+    quickSort(data, low, lt - 1, sortBy);
+    quickSort(data, gt + 1, high, sortBy);
 }
 
 void mergeSort(std::vector<CSVData>& data, int left, int right, const std::string& sortBy) {
