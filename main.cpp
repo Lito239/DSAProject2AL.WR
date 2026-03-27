@@ -153,7 +153,7 @@ int main()
                 
                 bool continueShowing = true;
                 int positionIndex = 0;
-                int moreResults = 10;
+                int moreResults = 0;
 
                 while (continueShowing == true) {
                     int continueSelection = -1;
@@ -164,7 +164,16 @@ int main()
                     std::cin >> continueSelection;
 
                     if (continueSelection == 1) {
-                        continue;
+                        std::cout << "\nHow many more results would you like to see? ";
+                        std::cin >> moreResults;
+                        
+                        positionIndex += moreResults;
+                        if (positionIndex >= quickSortDataName.size()) {
+                            std::cout << "\nNo more results to show." << std::endl;
+                            continueShowing = false;
+                        } else {
+                            printTopResults(quickSortDataName, ordered, positionIndex + moreResults);
+                        }
                     } 
                     else 
                     {
@@ -178,6 +187,35 @@ int main()
                 sortHelper(quickSortDataPopularity, mergeSortData, "popularity");
                 printTopResults(quickSortDataPopularity, ordered);
 
+                bool continueShowing = true;
+                int positionIndex = 0;
+                int moreResults = 0;
+
+                while (continueShowing == true) {
+                    int continueSelection = -1;
+                    std::cout << "\nKEEP SHOWING?" << std::endl;
+                    std::cout << "1. Yes" << std::endl;
+                    std::cout << "2. No" << std::endl;
+                    std::cout << "\nEnter Choice: "
+                    std::cin >> continueSelection;
+
+                    if (continueSelection == 1) {
+                        std::cout << "\nHow many more results would you like to see? ";
+                        std::cin >> moreResults;
+                        
+                        positionIndex += moreResults;
+                        if (positionIndex >= quickSortDataPopularity.size()) {
+                            std::cout << "\nNo more results to show." << std::endl;
+                            continueShowing = false;
+                        } else {
+                            printTopResults(quickSortDataPopularity, ordered, positionIndex + moreResults);
+                        }
+                    } 
+                    else 
+                    {
+                        continueShowing = false;
+                    }
+                }
             }
             else if (comparisonValue == 3)
             {
@@ -185,6 +223,35 @@ int main()
                 sortHelper(quickSortDataSeasons, mergeSortData, "seasons");
                 printTopResults(quickSortDataSeasons, ordered);
 
+                bool continueShowing = true;
+                int positionIndex = 0;
+                int moreResults = 0;
+
+                while (continueShowing == true) {
+                    int continueSelection = -1;
+                    std::cout << "\nKEEP SHOWING?" << std::endl;
+                    std::cout << "1. Yes" << std::endl;
+                    std::cout << "2. No" << std::endl;
+                    std::cout << "\nEnter Choice: "
+                    std::cin >> continueSelection;
+
+                    if (continueSelection == 1) {
+                        std::cout << "\nHow many more results would you like to see? ";
+                        std::cin >> moreResults;
+                        
+                        positionIndex += moreResults;
+                        if (positionIndex >= quickSortDataSeasons.size()) {
+                            std::cout << "\nNo more results to show." << std::endl;
+                            continueShowing = false;
+                        } else {
+                            printTopResults(quickSortDataSeasons, ordered, positionIndex + moreResults);
+                        }
+                    } 
+                    else 
+                    {
+                        continueShowing = false;
+                    }
+                }
             }
         }
         else if (menu == 0)
@@ -197,7 +264,5 @@ int main()
         }
         ordered = false;
     }
-    
-
     return 0;
 }
