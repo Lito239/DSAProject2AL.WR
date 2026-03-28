@@ -1,2 +1,2 @@
 # DSAProject2AL.WR
-Welcome to our project. Our goal is to make a program that allows the user to search for shows and sort them. Simply run SearchAShow (./SearchAShow) and follow the instructions in the terminal for what you are looking for! 
+Welcome to our project. Our goal is to make a program that allows the user to search for shows and sort them. Simply run SearchAShow (./SearchAShow) and follow the instructions in the terminal to search and sort based on what you are looking for! 
