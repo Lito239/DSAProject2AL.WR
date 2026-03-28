@@ -135,7 +135,7 @@ int main() {
                 std::cout << "\nEnter choice: ";
                 std::cin >> comparisonValue;
 
-                if (comparisonValue < 1 || comparisonValue >3) {
+                if (comparisonValue != 1 || comparisonValue =! 2 || comparisonValue =! 3) {
                     std::cout << "\nInvalid choice. Please enter 1, 2, or 3 to continue." << std::endl;
                 }
             }
