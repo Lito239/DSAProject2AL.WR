@@ -84,7 +84,7 @@ int main() {
         std::cout << "\n ************ SEARCH-A-SHOW ************" << std::endl;
         std::cout << "1. Search by Name" << std::endl;
         std::cout << "2. Filter by Popularity" << std::endl;
-        std::cout << "3. Filter By Seasons" << std::endl;
+        std::cout << "3. Filter by Seasons" << std::endl;
         std::cout << "4. Sort and Benchmark All Shows" << std::endl;
         std::cout << "0. Exit" << std::endl;
         std::cout << "\nEnter Choice: ";
@@ -113,7 +113,7 @@ int main() {
             std::cout << "\nEnter minimum number of seasons: ";
             std::cin >> minimumSeasons;
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons); // Function call to filter by seasons
-            std::cout << "\nShows with more than " << minimumSeasons << " seasons: " << seasonResults.size() << std::endl;
+            std::cout << "\nShows with " << minimumSeasons << " seasons or more: " << seasonResults.size() << std::endl;
             printTopResults(seasonResults, ordered);
         }
 
