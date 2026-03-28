@@ -136,7 +136,7 @@ int main() {
                 std::cin >> comparisonValue;
 
                 if (comparisonValue < 1 || comparisonValue >3) {
-                    std::cout << "Invalid choice. Please enter 1, 2, or 3." << std::endl;
+                    std::cout << "\nInvalid choice. Please enter 1, 2, or 3 to continue." << std::endl;
                 }
             }
 
@@ -173,8 +173,11 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else {
+                    else if (continueSelection == 2) {
                         continueShowing = false;
+                    }
+                    else {
+                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
@@ -210,8 +213,11 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else {
+                    else if (continueSelection == 2) {
                         continueShowing = false;
+                    }
+                    else {
+                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
@@ -247,8 +253,11 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else {
+                    else if (continueSelection == 2) {
                         continueShowing = false;
+                    }
+                    else {
+                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
@@ -257,7 +266,7 @@ int main() {
             std::cout << "\nExiting program." << std::endl;
         }
         else {
-            std::cout << "\nInvalid option. Please try again." << std::endl;
+            std::cout << "\nInvalid choice. Please try again." << std::endl;
         }
         ordered = false;
     }
