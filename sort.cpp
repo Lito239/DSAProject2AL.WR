@@ -15,35 +15,6 @@ bool sortCriteria(const CSVData& a, const CSVData& b, const std::string& sortBy)
     return false;
 }
 
-// Partition helper function for quick sort that uses the specified sorting criteria to determine the order of elements
-int partition(std::vector<CSVData>& data, int low, int high, const std::string& sortBy) {
-    int mid = low + (high - low) / 2;
-
-    if (sortCriteria(data[mid], data[low], sortBy))
-        std::swap(data[mid], data[low]);
-
-    if (sortCriteria(data[high], data[low], sortBy))
-        std::swap(data[high], data[low]);
-
-    if (sortCriteria(data[high], data[mid], sortBy))
-        std::swap(data[high], data[mid]);
-
-    std::swap(data[mid], data[high]);
-
-    const CSVData& pivot = data[high];
-    int i = low - 1;
-
-    for (int j = low; j < high; j++) {
-        if (sortCriteria(data[j], pivot, sortBy)) {
-            i++;
-            std::swap(data[i], data[j]);
-        }
-    }
-
-    std::swap(data[i + 1], data[high]);
-    return i + 1;
-}
-
 // Merge helper for merge sort that merges two sorted subarrays based on the specified sorting criteria
 void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::string& sortBy) {
     int n1 = mid - left + 1;
