@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 
-struct CSVData 
-{
+struct CSVData  {
     int ShowID;
     std::string name;
     int seasons;

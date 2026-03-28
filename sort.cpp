@@ -18,7 +18,6 @@ bool sortCriteria(const CSVData& a, const CSVData& b, const std::string& sortBy)
 }
 
 int partition(std::vector<CSVData>& data, int low, int high, const std::string& sortBy) {
-
     int mid = low + (high - low) / 2;
 
     if (sortCriteria(data[mid], data[low], sortBy))
@@ -36,12 +35,10 @@ int partition(std::vector<CSVData>& data, int low, int high, const std::string& 
     int i = low - 1;
 
     for (int j = low; j < high; j++) {
-
         if (sortCriteria(data[j], pivot, sortBy)) {
             i++;
             std::swap(data[i], data[j]);
         }
-
     }
 
     std::swap(data[i + 1], data[high]);
@@ -71,7 +68,8 @@ void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::
                 data[k] = R[j];
                 j++;
             }
-        } else if (sortBy == "popularity") {
+        } 
+        else if (sortBy == "popularity") {
             if (L[i].popularity >= R[j].popularity) {
                 data[k] = L[i];
                 i++;
@@ -79,7 +77,8 @@ void merge(std::vector<CSVData>& data, int left, int mid, int right, const std::
                 data[k] = R[j];
                 j++;
             }
-        } else if (sortBy == "seasons") {
+        } 
+        else if (sortBy == "seasons") {
             if (L[i].seasons >= R[j].seasons) {
                 data[k] = L[i];
                 i++;
@@ -115,7 +114,6 @@ void quickSort(std::vector<CSVData>& data, int low, int high, const std::string&
 
     while (i <= gt) {
         if (sortCriteria(data[i], pivot, sortBy)) {
-
             std::swap(data[lt], data[i]);
             lt++;
             i++;
@@ -126,7 +124,6 @@ void quickSort(std::vector<CSVData>& data, int low, int high, const std::string&
             gt--;
         }
         else {
-
             i++;
         }
     }

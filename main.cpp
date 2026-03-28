@@ -6,22 +6,19 @@
 #include "search.h"
 #include "sort.h"
 
-void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit = 10)
-{   
-    if (data.empty())
-    {
+void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit = 10) {   
+    if (data.empty()) {
         std::cout<<"No results found! \n";
         return;
     }
+
     int amountToPrint = limit;
     int printed = 0;
     int i = 0;
 
-    if (data.size() < limit)
-    {
+    if (data.size() < limit) {
         amountToPrint = data.size();
     }
-
     if (ordered) {
         std::cout << "\nShowing top " << amountToPrint << " ordered results:" << std::endl;
     }
@@ -29,10 +26,8 @@ void printTopResults(const std::vector<CSVData>& data, bool ordered, int limit =
         std::cout << "\nShowing the first " << amountToPrint << " matching unordered results:" << std::endl;
     }
 
-    while (printed < amountToPrint && i < data.size())
-    {
-        if (!data[i].name.empty())
-        {
+    while (printed < amountToPrint && i < data.size()) {
+        if (!data[i].name.empty()) {
             std::cout << printed + 1 << ". " << data[i].name
                     << " | Popularity: " << data[i].popularity
                     << " | Seasons: " << data[i].seasons
@@ -66,22 +61,19 @@ void sortHelper (std::vector<CSVData>& quickSortData, std::vector<CSVData>& merg
     std::cout << "Merge Sort Time: " << mergeSortDuration.count() << " seconds\n";
 }
 
-int main()
-{
+int main() {
     std::vector<CSVData> shows;
     loadCSVData("shows.csv", shows);
     std::cout <<"\n Total Shows Loaded: " <<shows.size()<<std::endl;
     bool ordered = false;
 
-    if (shows.empty())
-    {
+    if (shows.empty()) {
         std::cout << "No shows loaded." << std::endl;
         return 1;
     }
     
     int menu = -1;
-    while (menu != 0)
-    {
+    while (menu != 0) {
         std::cout << "\n ************ SEARCH-A-SHOW ************"<<std::endl;
         std::cout<< "1. Search by Name"<<std::endl;
         std::cout<< "2. Filter by Popularity"<<std::endl;
@@ -91,8 +83,7 @@ int main()
         std::cout<< "\nEnter Choice: ";
         std::cin >> menu;
 
-        if (menu == 1)
-        {
+        if (menu == 1) {
             std::cin.ignore();
             std::string key;
             std::cout <<"\nEnter a show name: ";
@@ -101,8 +92,7 @@ int main()
             std::cout <<"\nFound "<<results.size() << " matching results."<<std::endl;
             printTopResults(results, ordered);
         }
-        else if (menu ==2)
-        {
+        else if (menu ==2) {
             double minimumPop;
             std::cout<<"\nEnter minimum popularity: ";
             std::cin >> minimumPop;
@@ -111,8 +101,7 @@ int main()
             <<popularityResults.size() <<std::endl;
             printTopResults(popularityResults, ordered);
         }
-        else if (menu ==3)
-        {
+        else if (menu ==3) {
             int minimumSeasons;
             std::cout<<"\nEnter minimum number of seasons: ";
             std::cin >> minimumSeasons;
@@ -121,8 +110,7 @@ int main()
             <<seasonResults.size() <<std::endl;
             printTopResults(seasonResults, ordered);
         }
-        else if (menu ==4)
-        {
+        else if (menu ==4) {
             ordered = true;
             std::vector<CSVData> quickSortDataName = shows;
             std::vector<CSVData> quickSortDataPopularity = shows;
@@ -131,8 +119,7 @@ int main()
             
             int comparisonValue = -1;
 
-            while(comparisonValue < 1 || comparisonValue > 3)
-            {
+            while(comparisonValue < 1 || comparisonValue > 3) {
                 std::cout<<"\nCHOOSE SORTING CRITERIA: "<<std::endl;
                 std::cout<<"1. Sort by Name"<<std::endl;
                 std::cout<<"2. Sort by Popularity"<<std::endl;
@@ -140,13 +127,11 @@ int main()
                 std::cout<<"\nEnter choice: ";
                 std::cin >> comparisonValue;
 
-                if (comparisonValue < 1 || comparisonValue >3)
-                {
+                if (comparisonValue < 1 || comparisonValue >3) {
                     std::cout<<"Invalid choice. Please enter 1, 2, or 3."<<std::endl;
                 }
             }
-            if(comparisonValue == 1)
-            {
+            if(comparisonValue == 1) {
                 std::cout <<"\nSorting by name..."<<std::endl;
                 sortHelper(quickSortDataName, mergeSortData, "name");
                 printTopResults(quickSortDataName, ordered);
@@ -175,14 +160,12 @@ int main()
                             printTopResults(quickSortDataName, ordered, positionIndex);
                         }
                     } 
-                    else 
-                    {
+                    else {
                         continueShowing = false;
                     }
                 }
             }
-            else if (comparisonValue == 2)
-            {
+            else if (comparisonValue == 2) {
                 std::cout <<"\nSorting by popularity..."<<std::endl;
                 sortHelper(quickSortDataPopularity, mergeSortData, "popularity");
                 printTopResults(quickSortDataPopularity, ordered);
@@ -211,14 +194,12 @@ int main()
                             printTopResults(quickSortDataPopularity, ordered, positionIndex);
                         }
                     } 
-                    else 
-                    {
+                    else {
                         continueShowing = false;
                     }
                 }
             }
-            else if (comparisonValue == 3)
-            {
+            else if (comparisonValue == 3) {
                 std::cout <<"\nSorting by seasons..."<<std::endl;
                 sortHelper(quickSortDataSeasons, mergeSortData, "seasons");
                 printTopResults(quickSortDataSeasons, ordered);
@@ -243,23 +224,21 @@ int main()
                         if (positionIndex >= quickSortDataSeasons.size()) {
                             std::cout << "\nNo more results to show." << std::endl;
                             continueShowing = false;
-                        } else {
+                        } 
+                        else {
                             printTopResults(quickSortDataSeasons, ordered, positionIndex);
                         }
                     } 
-                    else 
-                    {
+                    else {
                         continueShowing = false;
                     }
                 }
             }
         }
-        else if (menu == 0)
-        {
+        else if (menu == 0) {
             std::cout <<"\nExiting program."<<std::endl;
         }
-        else
-        {
+        else {
             std::cout<<"\nInvalid option. Please try again."<<std::endl;
         }
         ordered = false;
