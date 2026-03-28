@@ -1,12 +1,15 @@
 #include "search.h"
 #include <cctype>
 
+// Helper function to convert a string to lowercase for case-insensitive searching
 std::string lowercaseHelper(std::string text) {
   for (int i = 0; i < text.length(); i++) {
       text[i] = std::tolower((unsigned char)text[i]);
     }
     return text;
 }
+
+// Function to search for shows by name and return a vector of matching results
 std::vector<CSVData> searchName(const std::vector<CSVData>& data, const std::string& key) {
   std::vector<CSVData> results;
   std::string lowerKey = lowercaseHelper(key);
@@ -18,6 +21,8 @@ std::vector<CSVData> searchName(const std::vector<CSVData>& data, const std::str
   }
   return results;
 }
+
+// Function to filter shows by minimum popularity and return a vector of matching results
 std::vector<CSVData> filterByPopularity(const std::vector<CSVData>& data, double leastPopular) {
   std::vector<CSVData> results;
   for (int i = 0; i<data.size();i++) {
@@ -27,6 +32,8 @@ std::vector<CSVData> filterByPopularity(const std::vector<CSVData>& data, double
     }
   return results;
 }
+
+// Function to filter shows by minimum number of seasons and return a vector of matching results
 std::vector<CSVData> filterBySeasons(const std::vector<CSVData>& data, int leastNumSeasons) {
   std::vector<CSVData> results;
   for (int i = 0; i<data.size();i++) {
@@ -34,14 +41,5 @@ std::vector<CSVData> filterBySeasons(const std::vector<CSVData>& data, int least
         results.push_back(data[i]);
       }
     }
-  return results;
-}
-std::vector<CSVData> filterByProduction(const std::vector<CSVData>& data, bool currentlyInProduction) {
-  std::vector<CSVData> results;
-  for( int i = 0; i<data.size(); i++) {
-    if(data[i].inProduction == currentlyInProduction) {
-      results.push_back(data[i]);
-    }
-  }
   return results;
 }

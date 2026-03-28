@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 
+// Helper function to convert a string to an integer
 int stringToInt(const std::string& val) {
     if (val.empty()) {
         return 0;
@@ -15,6 +16,7 @@ int stringToInt(const std::string& val) {
     }
 }
 
+// Helper function to convert a string to a double
 double stringToDouble(const std::string& val) {
     if (val.empty()) {
         return 0.0;
@@ -27,6 +29,7 @@ double stringToDouble(const std::string& val) {
     }
 }
 
+// Helper function to convert a string to a boolean
 bool stringToBool(const std::string& val) {
     if (val == "1" || val == "true" || val == "TRUE") {
         return true;
@@ -34,6 +37,7 @@ bool stringToBool(const std::string& val) {
     return false;
 }
 
+// Function to load CSV data from a file and populate a vector of CSVData structs
 void loadCSVData(const std::string& filename, std::vector<CSVData>& data) {
     std::ifstream file(filename);
     if (file.is_open() == false) {
@@ -44,6 +48,7 @@ void loadCSVData(const std::string& filename, std::vector<CSVData>& data) {
 std::string line;
 std::getline (file, line);
 
+// Read each line of the CSV file, parse the values, and populate the CSVData struct for each show
 while (std::getline(file, line)) {
     std::stringstream ss(line);
     std::string val;

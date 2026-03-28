@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+// Struct to hold the data for each show, with fields corresponding to the columns in the CSV file
 struct CSVData  {
     int ShowID;
     std::string name;
