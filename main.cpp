@@ -80,6 +80,8 @@ int main() {
 
     // Main menu loop
     int menu = -1;
+    std::string menuString;
+
     while (menu != 0) {
         std::cout << "\n ************ SEARCH-A-SHOW ************" << std::endl;
         std::cout << "1. Search by Name" << std::endl;
@@ -88,7 +90,16 @@ int main() {
         std::cout << "4. Sort and Benchmark All Shows" << std::endl;
         std::cout << "0. Exit" << std::endl;
         std::cout << "\nEnter Choice: ";
-        std::cin >> menu;
+        std::cin >> menuString;
+
+        try {
+            menu = std::stoi(menuString);
+        }
+        catch (...) {
+            std::cout << "\nInInvalid choice. Please try again.\n";
+            menu = -1;
+            continue;
+        }
 
         // Options 1-3 allow the user to search or filter the shows based on their choice of criteria and then print first 10 results from the unsorted data
         if (menu == 1) {
