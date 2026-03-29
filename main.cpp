@@ -155,6 +155,7 @@ int main() {
                 bool continueShowing = true;
                 int positionIndex = 10;
                 int moreResults = 0;
+                std::string moreResultsString;
 
                 // Loop to allow the user to continue showing more results until they choose to stop or there are no more results to show
                 while (continueShowing == true) {
@@ -168,8 +169,20 @@ int main() {
                     // Ask the user how many more results they would like to see and update the position index accordingly
                     if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
-                        std::cin >> moreResults;
-                        
+                        std::cin >> moreResultsString;
+
+                        try {
+                            moreResults = std::stoi(moreResultsString);
+                            if (moreResults <= 0) {
+                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                continue;
+                            }
+                        }
+                        catch (...) {
+                            std::cout << "Invalid input. Please enter a positive number.\n";
+                            continue;
+                        }
+
                         positionIndex += moreResults;
                         if (positionIndex >= quickSortData.size()) {
                             std::cout << "\nNo more results to show." << std::endl;
@@ -208,7 +221,14 @@ int main() {
                     // Ask the user how many more results they would like to see and update the position index accordingly
                     if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
-                        std::cin >> moreResults;
+                        std::cin >> moreResultsString;
+
+                        try {
+                            moreResults = std::stoi(moreResultsString);
+                            if (moreResults <= 0) {
+                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                continue;
+                            }
                         
                         positionIndex += moreResults;
                         if (positionIndex >= quickSortData.size()) {
@@ -248,7 +268,14 @@ int main() {
                     // Ask the user how many more results they would like to see and update the position index accordingly
                     if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
-                        std::cin >> moreResults;
+                        std::cin >> moreResultsString;
+
+                        try {
+                            moreResults = std::stoi(moreResultsString);
+                            if (moreResults <= 0) {
+                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                continue;
+                            }
                         
                         positionIndex += moreResults;
                         if (positionIndex >= quickSortData.size()) {
