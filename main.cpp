@@ -210,7 +210,6 @@ int main() {
                 int moreResults = 0;
                 std::string moreResultsString;
 
-
                 // Loop to allow the user to continue showing more results until they choose to stop or there are no more results to show
                 while (continueShowing == true) {
                     std::string continueSelection;
