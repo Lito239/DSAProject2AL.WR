@@ -140,6 +140,7 @@ int main() {
                     std::cout << "\nInvalid input. Please enter a numeric value.\n";
 
                 }
+            }
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons); // Function call to filter by seasons
             std::cout << "\nShows with " << minimumSeasons << " seasons or more: " << seasonResults.size() << std::endl;
             printTopResults(seasonResults, ordered);
