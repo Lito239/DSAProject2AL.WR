@@ -126,18 +126,24 @@ int main() {
             std::vector<CSVData> mergeSortData = shows;
             
             // Menu to select sorting criteria
+            std::string input;
             int comparisonValue = -1;
-            while(comparisonValue < 1 || comparisonValue > 3) {
+            while(true) {
                 std::cout << "\nCHOOSE SORTING CRITERIA: " << std::endl;
                 std::cout << "1. Sort by Name" << std::endl;
                 std::cout << "2. Sort by Popularity" << std::endl;
                 std::cout << "3. Sort by Seasons" << std::endl;
                 std::cout << "\nEnter choice: ";
-                std::cin >> comparisonValue;
+                std::cin >> input;
 
-                if (comparisonValue != 1 || comparisonValue =! 2 || comparisonValue =! 3) {
+                if (input == "1" || input == "2" || input == "3") {
+                    comparisonValue = std::stoi(input);
+                    break;
+                }
+                else {
                     std::cout << "\nInvalid choice. Please enter 1, 2, or 3 to continue." << std::endl;
                 }
+
             }
 
             // Call the sortHelper function to perform sorting and benchmarking based on the user's choice of criteria
@@ -152,7 +158,7 @@ int main() {
 
                 // Loop to allow the user to continue showing more results until they choose to stop or there are no more results to show
                 while (continueShowing == true) {
-                    int continueSelection = -1;
+                    std::string continueSelection;
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
@@ -160,7 +166,7 @@ int main() {
                     std::cin >> continueSelection;
 
                     // Ask the user how many more results they would like to see and update the position index accordingly
-                    if (continueSelection == 1) {
+                    if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
                         std::cin >> moreResults;
                         
@@ -173,7 +179,7 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else if (continueSelection == 2) {
+                    else if (continueSelection == "2") {
                         continueShowing = false;
                     }
                     else {
@@ -192,7 +198,7 @@ int main() {
 
                 // Loop to allow the user to continue showing more results until they choose to stop or there are no more results to show
                 while (continueShowing == true) {
-                    int continueSelection = -1;
+                    std::string continueSelection;
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
@@ -200,7 +206,7 @@ int main() {
                     std::cin >> continueSelection;
 
                     // Ask the user how many more results they would like to see and update the position index accordingly
-                    if (continueSelection == 1) {
+                    if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
                         std::cin >> moreResults;
                         
@@ -213,7 +219,7 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else if (continueSelection == 2) {
+                    else if (continueSelection == "2") {
                         continueShowing = false;
                     }
                     else {
@@ -232,7 +238,7 @@ int main() {
 
                 // Loop to allow the user to continue showing more results until they choose to stop or there are no more results to show
                 while (continueShowing == true) {
-                    int continueSelection = -1;
+                    std::string continueSelection;
                     std::cout << "\nKEEP SHOWING?" << std::endl;
                     std::cout << "1. Yes" << std::endl;
                     std::cout << "2. No" << std::endl;
@@ -240,7 +246,7 @@ int main() {
                     std::cin >> continueSelection;
 
                     // Ask the user how many more results they would like to see and update the position index accordingly
-                    if (continueSelection == 1) {
+                    if (continueSelection == "1") {
                         std::cout << "\nHow many more results would you like to see? ";
                         std::cin >> moreResults;
                         
@@ -253,7 +259,7 @@ int main() {
                             printTopResults(quickSortData, ordered, positionIndex);
                         }
                     } 
-                    else if (continueSelection == 2) {
+                    else if (continueSelection == "2") {
                         continueShowing = false;
                     }
                     else {
