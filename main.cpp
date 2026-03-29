@@ -101,17 +101,45 @@ int main() {
             printTopResults(results, ordered);
         }
         else if (menu ==2) {
-            double minimumPop;
-            std::cout << "\nEnter minimum popularity: ";
-            std::cin >> minimumPop;
+            double minimumPop = 0;
+            std::string minimumPopString;
+            bool validInp = false;
+
+            while (!validInp) {
+                std::cout << "\nEnter minimum popularity: ";
+                std::cin >> minimumPopString;    
+                
+                try {
+                    minimumPop = std::stod(minimumPopString);
+                    validInp = true;
+                }
+                catch (...) {
+                    std::cout << "\nInvalid input. Please enter a numeric value.\n";
+
+                }
+
+            }
             std::vector<CSVData> popularityResults = filterByPopularity(shows, minimumPop); // Function call to filter by popularity
             std::cout << "\nShows with more than " << minimumPop << " popularity rating: " << popularityResults.size() << std::endl;
             printTopResults(popularityResults, ordered);
         }
         else if (menu ==3) {
             int minimumSeasons;
-            std::cout << "\nEnter minimum number of seasons: ";
-            std::cin >> minimumSeasons;
+            std::string minimumSeasonsString;
+            bool validInp = false;
+
+            while (!validInp) {
+                std::cout << "\nEnter minimum number of seasons: ";
+                std::cin >> minimumSeasonsString;    
+                
+                try {
+                    minimumSeasons = std::stod(minimumSeasonsString);
+                    validInp = true;
+                }
+                catch (...) {
+                    std::cout << "\nInvalid input. Please enter a numeric value.\n";
+
+                }
             std::vector<CSVData> seasonResults = filterBySeasons(shows, minimumSeasons); // Function call to filter by seasons
             std::cout << "\nShows with " << minimumSeasons << " seasons or more: " << seasonResults.size() << std::endl;
             printTopResults(seasonResults, ordered);
@@ -174,12 +202,12 @@ int main() {
                         try {
                             moreResults = std::stoi(moreResultsString);
                             if (moreResults <= 0) {
-                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                std::cout << "\nInvalid input. Please enter a positive number.\n";
                                 continue;
                             }
                         }
                         catch (...) {
-                            std::cout << "Invalid input. Please enter a positive number.\n";
+                            std::cout << "\nInvalid input. Please enter a positive number.\n";
                             continue;
                         }
 
@@ -196,7 +224,7 @@ int main() {
                         continueShowing = false;
                     }
                     else {
-                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
+                        std::cout << "\nInvalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
@@ -227,12 +255,12 @@ int main() {
                         try {
                             moreResults = std::stoi(moreResultsString);
                             if (moreResults <= 0) {
-                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                std::cout << "\nInvalid input. Please enter a positive number.\n";
                                 continue;
                             }
                         }
                         catch (...) {
-                            std::cout << "Invalid input. Please enter a positive number.\n";
+                            std::cout << "\nInvalid input. Please enter a positive number.\n";
                             continue;
                         }
                         
@@ -249,7 +277,7 @@ int main() {
                         continueShowing = false;
                     }
                     else {
-                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
+                        std::cout << "\nInvalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
@@ -280,12 +308,12 @@ int main() {
                         try {
                             moreResults = std::stoi(moreResultsString);
                             if (moreResults <= 0) {
-                                std::cout << "Invalid input. Please enter a positive number.\n";
+                                std::cout << "\nInvalid input. Please enter a positive number.\n";
                                 continue;
                             }
                         }
                         catch (...) {
-                            std::cout << "Invalid input. Please enter a positive number.\n";
+                            std::cout << "\nInvalid input. Please enter a positive number.\n";
                             continue;
                         }
                         
@@ -302,7 +330,7 @@ int main() {
                         continueShowing = false;
                     }
                     else {
-                        std::cout << "Invalid choice. Please enter 1 or 2 to continue: " << std::endl;
+                        std::cout << "\nInvalid choice. Please enter 1 or 2 to continue: " << std::endl;
                     }
                 }
             }
